@@ -201,4 +201,9 @@ export class AudioCaptureManagerMain extends TypedEmitter<AudioCaptureManagerEve
       viewId
     );
   };
+
+  /** Hidden renderer that owns Kenku's Web Audio mix. */
+  getCaptureWindow(): BrowserWindow {
+    return this._browserWindow;
+  }
 }

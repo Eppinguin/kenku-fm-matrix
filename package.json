@@ -1,8 +1,8 @@
 {
-  "name": "kenku-fm",
-  "productName": "Kenku FM",
-  "version": "1.5.5",
-  "description": "Online tabletop audio sharing for Discord",
+  "name": "kenku-fm-matrix",
+  "productName": "Kenku FM Matrix",
+  "version": "1.5.5-matrix.1",
+  "description": "Unofficial community fork of Kenku FM with Discord and MatrixRTC audio output",
   "main": "./.webpack/main",
   "scripts": {
     "start": "electron-forge start",
@@ -63,6 +63,7 @@
     "@dnd-kit/utilities": "^3.0.1",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@matrix-org/matrix-sdk-crypto-wasm": "18.4.0",
     "@mui/icons-material": "6.5.0",
     "@mui/material": "6.5.0",
     "@reduxjs/toolkit": "^2.2.6",
@@ -77,7 +78,9 @@
     "fastify": "^4.26.1",
     "howler": "^2.2.4",
     "libsodium-wrappers": "^0.8.2",
+    "livekit-client": "2.22.2",
     "lodash.throttle": "^4.1.1",
+    "matrix-js-sdk": "42.3.0",
     "opusscript": "^0.1.1",
     "prism-media": "^1.3.5",
     "react": "18.3.1",
@@ -89,5 +92,13 @@
     "uuid": "^10.0.0",
     "ws": "^8.19.0",
     "zlib-sync": "^0.1.10"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eppinguin/kenku-fm-matrix.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Eppinguin/kenku-fm-matrix/issues"
+  },
+  "homepage": "https://github.com/Eppinguin/kenku-fm-matrix#readme"
 }

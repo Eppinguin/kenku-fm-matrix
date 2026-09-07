@@ -37,6 +37,8 @@ export class AudioCaptureManagerPreload {
   _audioContext?: AudioContext;
   /** Audio output node that streams will connect to */
   _audioOutputNode?: AudioNode;
+  /** Stable mixed MediaStream shared by local and Matrix outputs. */
+  _outputDestination?: MediaStreamAudioDestinationNode;
 
   /** Audio DOM element for the current output / local playback */
   _audioOutputElement?: HTMLAudioElement;
@@ -61,6 +63,9 @@ export class AudioCaptureManagerPreload {
       sampleRate: SAMPLE_RATE,
     });
     this._audioOutputNode = this._audioContext.createGain();
+    this._outputDestination =
+      this._audioContext.createMediaStreamDestination();
+    this._audioOutputNode.connect(this._outputDestination);
 
     await this._setupWebsocket();
     await this._setupLoopback();
@@ -168,13 +173,21 @@ export class AudioCaptureManagerPreload {
     });
   }
 
+  getOutputTrack(): MediaStreamTrack {
+    const track = this._outputDestination?.stream.getAudioTracks()[0];
+    if (!track) {
+      throw new Error("Kenku audio capture has not started yet");
+    }
+    return track;
+  }
+
   async _setupLoopback(): Promise<void> {
-    // Create loopback media element
-    const mediaDestination = this._audioContext.createMediaStreamDestination();
-    this._audioOutputNode.connect(mediaDestination);
+    if (!this._outputDestination) {
+      throw new Error("Kenku audio output is unavailable");
+    }
 
     this._audioOutputElement = document.createElement("audio");
-    this._audioOutputElement.srcObject = mediaDestination.stream;
+    this._audioOutputElement.srcObject = this._outputDestination.stream;
     this._audioOutputElement.onloadedmetadata = () => {
       this._audioOutputElement.play();
     };

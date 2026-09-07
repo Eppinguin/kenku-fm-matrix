@@ -37,6 +37,7 @@ import {
   StreamingMode,
 } from "./settingsSlice";
 import { showWindowControls } from "../../common/showWindowControls";
+import { MatrixSettings } from "./MatrixSettings";
 
 type SettingsProps = {
   open: boolean;
@@ -360,6 +361,9 @@ export function Settings({ open, onClose }: SettingsProps) {
       <DialogContent>
         <DialogContentText>Discord</DialogContentText>
         {discordSettings}
+        <Divider sx={{ mb: 2 }} />
+        <DialogContentText>Matrix</DialogContentText>
+        <MatrixSettings />
         <Divider sx={{ mb: 2 }} />
         <DialogContentText>Remote</DialogContentText>
         {remoteSettings}

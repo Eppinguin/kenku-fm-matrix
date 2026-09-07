@@ -1,0 +1,49 @@
+name: Bug report
+description: Report a reproducible problem in the Matrix-enabled fork
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not paste Matrix access tokens, OpenID tokens, LiveKit JWTs, passwords, or other credentials.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: 1.5.5-matrix.1
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Matrix login/session
+        - Matrix call discovery
+        - Matrix call join/leave
+        - Matrix audio/E2EE
+        - Discord regression
+        - Local audio
+        - Build/packaging
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized logs
+      description: Remove tokens, JWTs, account secrets, and private server information before posting.
+      render: shell

@@ -14,6 +14,12 @@ type Channel =
   | "DISCORD_GUILDS"
   | "DISCORD_CHANNEL_JOINED"
   | "DISCORD_CHANNEL_LEFT"
+  | "MATRIX_READY"
+  | "MATRIX_DISCONNECTED"
+  | "MATRIX_LOGIN_FLOWS"
+  | "MATRIX_ROOMS"
+  | "MATRIX_ROOM_JOINED"
+  | "MATRIX_ROOM_LEFT"
   | "SHOW_CONTROLS"
   | "BROWSER_VIEW_DID_NAVIGATE"
   | "BROWSER_VIEW_TITLE_UPDATED"
@@ -34,6 +40,12 @@ const validChannels: Channel[] = [
   "DISCORD_GUILDS",
   "DISCORD_CHANNEL_JOINED",
   "DISCORD_CHANNEL_LEFT",
+  "MATRIX_READY",
+  "MATRIX_DISCONNECTED",
+  "MATRIX_LOGIN_FLOWS",
+  "MATRIX_ROOMS",
+  "MATRIX_ROOM_JOINED",
+  "MATRIX_ROOM_LEFT",
   "SHOW_CONTROLS",
   "BROWSER_VIEW_DID_NAVIGATE",
   "BROWSER_VIEW_TITLE_UPDATED",
@@ -62,6 +74,37 @@ const api = {
   },
   leaveChannel: (channelId: string) => {
     ipcRenderer.send("DISCORD_LEAVE_CHANNEL", channelId);
+  },
+  matrixGetLoginFlows: (homeserver: string) => {
+    ipcRenderer.send("MATRIX_GET_LOGIN_FLOWS", homeserver);
+  },
+  matrixLoginPassword: (
+    homeserver: string,
+    username: string,
+    password: string,
+  ) => {
+    ipcRenderer.send("MATRIX_LOGIN_PASSWORD", homeserver, username, password);
+  },
+  matrixLoginSSO: (homeserver: string) => {
+    ipcRenderer.send("MATRIX_LOGIN_SSO", homeserver);
+  },
+  matrixLoginToken: (homeserver: string, accessToken: string) => {
+    ipcRenderer.send("MATRIX_LOGIN_TOKEN", homeserver, accessToken);
+  },
+  matrixRestoreSession: () => {
+    ipcRenderer.send("MATRIX_RESTORE_SESSION");
+  },
+  matrixLogout: () => {
+    ipcRenderer.send("MATRIX_LOGOUT");
+  },
+  matrixDisconnect: () => {
+    ipcRenderer.send("MATRIX_DISCONNECT");
+  },
+  matrixJoinRoom: (roomId: string) => {
+    ipcRenderer.send("MATRIX_JOIN_ROOM", roomId);
+  },
+  matrixLeaveRoom: (roomId: string) => {
+    ipcRenderer.send("MATRIX_LEAVE_ROOM", roomId);
   },
   createBrowserView: async (
     url: string,

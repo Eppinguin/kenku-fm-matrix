@@ -56,11 +56,23 @@ const migrations: any = {
       },
     };
   },
+  // Matrix account settings. Credentials are stored separately with Electron
+  // safeStorage and are intentionally not persisted in Redux.
+  5: (state: RootState): RootState => {
+    return {
+      ...state,
+      settings: {
+        ...state.settings,
+        matrixHomeserver: "",
+        matrixUsername: "",
+      },
+    };
+  },
 };
 
 const persistConfig = {
   key: "root",
-  version: 4,
+  version: 5,
   storage,
   whitelist: ["bookmarks", "settings"],
   migrate: createMigrate(migrations, { debug: false }),

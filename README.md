@@ -1,13 +1,18 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-# Kenku FM
+# Kenku FM Matrix
+
+> **Unofficial community fork.** This project is based on [Kenku FM](https://github.com/owlbear-rodeo/kenku-fm) by Owlbear Rodeo and is not affiliated with or endorsed by Owlbear Rodeo.
 
 Kenku FM is a desktop application for Windows, MacOS and Linux designed to be the easiest way to share music in a Discord voice call.
+
+This fork keeps Kenku FM's existing Discord and local audio outputs and adds MatrixRTC/LiveKit output for Matrix calls.
 
 - Use the Kenku Player interface to share your **local music** and sound effects to your discord calls.
 - Use the built in web browser to share audio from your favourite websites like **YouTube** and **Spotify**.
 - Trigger and control sounds with the Kenku FM plugin for the **Elgato Stream Deck**.
 - If you already have a **virtual audio cable** setup use Kenku FM as an easy way to connect to Discord with your existing software.
+- Send Kenku FM's mixed audio directly to an **active MatrixRTC call**.
 
 <p align="center">
   <img src="./docs/example.png" alt="Kenku FM Interface" width="738">
@@ -15,11 +20,21 @@ Kenku FM is a desktop application for Windows, MacOS and Linux designed to be th
 
 ## Installing
 
-Prebuilt binaries can be found at [kenku.fm](https://www.kenku.fm) or from the [GitHub releases](https://github.com/owlbear-rodeo/kenku-fm/releases).
+Prebuilt binaries for upstream Kenku FM can be found at [kenku.fm](https://www.kenku.fm) or from the [upstream GitHub releases](https://github.com/owlbear-rodeo/kenku-fm/releases).
+
+Fork releases, when available, are published from this repository.
 
 ## Docs
 
 Docs on using Kenku FM can be found [here](https://www.kenku.fm/docs).
+
+Matrix-specific setup and limitations are documented in [docs/MATRIX.md](docs/MATRIX.md).
+
+## MatrixRTC output
+
+Only rooms with an **already-active Matrix call** are shown as Matrix outputs. Kenku joins an existing call; it does not create or start one itself. Calls already active when Kenku starts are discovered after the initial Matrix sync.
+
+When Multiple Outputs is enabled, local output, Discord, and one Matrix call can be used together.
 
 ## How it Works
 
@@ -31,6 +46,7 @@ Docs on using Kenku FM can be found [here](https://www.kenku.fm/docs).
 6. Enable external inputs to allow mixing in OS audio inputs.
 7. Enable multiple outputs to send your audio to multiple Discord servers at once.
 8. If you plan to use Kenku FM for streaming you can also output to your local machine for capture by a streaming app and a discord call for your players at the same time.
+9. This fork can also publish the same mixed Web Audio output to an existing MatrixRTC call through LiveKit.
 
 ## Building
 
@@ -80,10 +96,10 @@ The `player` folder contains the code for the built in audio player. This runs a
 
 ## Licence
 
-Kenku FM is licensed under the GNU General Public Licence v3.0.
+Kenku FM is licensed under the GNU General Public Licence v3.0. This fork remains licensed under the same terms. See [LICENSE](LICENSE).
 
 ## Contributing
 
-For our own wellbeing Kenku FM follows a similar contribution policy projects like [Litestream](https://github.com/benbjohnson/litestream#open-source-not-open-contribution).
+This fork is maintained independently of upstream Kenku FM. See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidance.
 
-This means we are open to pull requests for bug fixes only. Pull requests for new features will not be accepted due to the burden of maintaining these features into the future.
+For upstream Kenku FM's contribution policy, see the [upstream repository](https://github.com/owlbear-rodeo/kenku-fm).

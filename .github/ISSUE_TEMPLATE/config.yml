@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Upstream Kenku FM
+    url: https://github.com/owlbear-rodeo/kenku-fm
+    about: Use upstream only for issues reproducible in unmodified Kenku FM.

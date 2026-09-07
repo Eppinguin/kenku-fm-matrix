@@ -5,6 +5,8 @@ export type StreamingMode = "lowLatency" | "performance";
 
 export interface SettingsState {
   discordToken: string;
+  matrixHomeserver: string;
+  matrixUsername: string;
   urlBarEnabled: boolean;
   remoteEnabled: boolean;
   remoteAddress: string;
@@ -17,6 +19,8 @@ export interface SettingsState {
 
 const initialState: SettingsState = {
   discordToken: "",
+  matrixHomeserver: "",
+  matrixUsername: "",
   urlBarEnabled: true,
   remoteEnabled: false,
   remoteAddress: "127.0.0.1",
@@ -33,6 +37,12 @@ export const connectionSlice = createSlice({
   reducers: {
     setDiscordToken: (state, action: PayloadAction<string>) => {
       state.discordToken = action.payload;
+    },
+    setMatrixHomeserver: (state, action: PayloadAction<string>) => {
+      state.matrixHomeserver = action.payload;
+    },
+    setMatrixUsername: (state, action: PayloadAction<string>) => {
+      state.matrixUsername = action.payload;
     },
     setURLBarEnabled: (state, action: PayloadAction<boolean>) => {
       state.urlBarEnabled = action.payload;
@@ -63,6 +73,8 @@ export const connectionSlice = createSlice({
 
 export const {
   setDiscordToken,
+  setMatrixHomeserver,
+  setMatrixUsername,
   setURLBarEnabled,
   setRemoteEnabled,
   setRemoteAddress,
